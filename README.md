@@ -17,3 +17,5 @@ Here are some ideas to get you started:
 自我介绍:
 我是chay，这是我的Github账号
 我会编程
+我会的语言：中文、英文
+我会的编程语言：Python、C++、C语言、Html和Java（会一丢丢）
