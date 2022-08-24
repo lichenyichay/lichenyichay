@@ -14,10 +14,6 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-```C++
-#include <iostream>
-int main(){
-    printf("Hello GitHub!");
-    return 0;
-}
-```
+自我介绍:
+我是chay，这是我的Github账号
+我会编程
