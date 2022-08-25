@@ -699,3 +699,107 @@ int main()
     return 0;
 }
 ```
+2、密码破译站1.3.2
+```C++
+#include <bits/stdc++.h>
+#include <string>
+
+using namespace std;
+int ecpn = 1,c = 1,d = 1;
+void download(){
+
+    double download_step_list[6] = {0.0,5.34,6.30,11.50,13.905,30.89}; 
+    int space = 0;
+    cout << "\33[?25l";
+    for(int i = 0;i < 6;i++){
+        cout << "[" << "\33[42m" <<" 已下载：" << download_step_list[i] << "MB " << "\33[0m" <<"]" << download_step_list[5] << "MB" <<"/" << download_step_list[i] << "MB" << endl;
+    
+    
+    }
+    cout << "\33[?25h";
+    cout << "下载成功！" << endl;
+
+    
+}
+void ECPN(int choice_ecpn,string string_ecpn,int mode_ecpn){
+    char sum_list[10000] = {0};
+    int len_ecpn = string_ecpn.size();
+    for(int i = 0;i < len_ecpn;i++){
+        sum_list[i] = string_ecpn[i];    
+    }
+
+    cout << "结果是：" << endl;
+    switch(choice_ecpn){
+        case 1://KS3F
+            for(int i = 0;i < len_ecpn;i++){
+                if(mode_ecpn == 1){
+                    sum_list[i] += 3;
+                }else if(mode_ecpn == 2){
+                    sum_list[i] -= 3;
+                }
+                cout << sum_list[i];
+            }
+            cout<< endl;
+            break;
+        case 2://NCSE
+            char NCSE_char;
+            int NCSE_num;
+            for(int i = 0;i < len_ecpn;i++){
+                if(mode_ecpn == 1) {
+                    sum_list[i] = (int)sum_list[i];
+                }else if(mode_ecpn == 2){
+                    sum_list[i] = (char)sum_list[i];
+                }
+                cout << sum_list[i];
+            }
+            cout << endl;
+            break;
+        default:
+            break;
+    }
+}
+
+int main(){
+    download();
+
+    string input_string,user;
+    cout << "请输入用户名：" << endl;
+    getline(cin,user);
+    cout << "Hello," << user << "." << endl;
+    while(true){
+        
+    
+        int choice;
+        cout << "1.解码 2.加密 3.设置解码方式 0.退出 请输入：";
+        cin >> choice;
+        if(choice == 0){
+            exit(0);   
+        }else if(choice == 1){
+            c = 1;
+            cout << "请输入要处理的字符串：" << endl;
+            cin >> input_string;
+            ECPN(c,input_string,d);
+        }else if(choice == 2){
+            c = 2; 
+            cout << "请输入要处理的字符串：" << endl;
+            cin >> input_string;
+            ECPN(c,input_string,d);
+        }else if(choice == 3){
+            cout << "请选择处理方式：1.KS3F 2.NCSE" << endl;
+            cout << "当前处理方式为：";
+            if(d == 1){
+                cout << " KS3F" << endl;
+            }else{
+                cout << " NCSE" << endl;
+            }
+            cin >> d;
+            if(d!=1 && d!=2){
+                cout << "输入错误！" << endl;
+                break;
+            }
+        }
+    
+    }
+    return 0;
+}
+```
