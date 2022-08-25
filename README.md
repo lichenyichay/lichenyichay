@@ -487,7 +487,7 @@ while True:
         print(b)
         break
 ```
-2、math库运算器
+2、math库运算器3.1（IDLE、学而思编程社区等所有可编写python代码的均有效）
 ```python
 import math
 def z():   
@@ -617,4 +617,85 @@ def z():
             print("暂不支持此功能！")
             break
 z()
+```
+C++及C篇：
+1、身份证验证真假修复版（多次）
+```C++
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+    int a,b;
+    string id;
+    cout << "请输入身份证号：";
+    cin >> id;
+    while (id!="-1"){
+        //计算数的存储
+        int jss[17]={7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
+        //校验码的存储
+        char jym[11]={'1','0','X','9','8','7','6','5','4','3','2'};
+        int sum = 0;
+        //补充完整计算的过程(for循环)
+        for (int i = 0; i <= 16; i++) 
+        {
+            //1.身份证的字符型数字变为整型
+            a = id[i] - '0';
+            //2.整型数字乘以对应的计算数
+            b = a * jym[i];
+            //3.计算结果累加到sum中
+            sum = sum + b;
+            
+                
+        }
+        //验证校验码内容
+        int c = sum % 11;
+        if (id[17] == jym[c])
+        {
+            cout << "验证结果：真\n";
+        }
+        else
+        {
+            cout << "验证结果：假\n";
+            break;
+        }
+        al:{
+            c=0;
+            a=0;
+            b=0;
+            string id;
+            cout << "请输入身份证号：";
+            cin >> id;
+            sum = 0;
+            //补充完整计算的过程(for循环)
+            for (int i = 0; i <= 16; i++) 
+            {
+                //1.身份证的字符型数字变为整型
+                a = id[i] - '0';
+                //2.整型数字乘以对应的计算数
+                b = a * jym[i];
+                //3.计算结果累加到sum中
+                sum = sum + b;
+                
+                    
+            }
+            //验证校验码内容
+            c = sum % 11;
+            if (id[17] == jym[c])
+            {
+                cout << "验证结果：真\n";
+                goto al;
+            }
+            else
+            {
+                cout << "验证结果：假\n";
+                break;
+            }
+        }
+        
+    }
+    
+    return 0;
+}
 ```
