@@ -18,7 +18,7 @@ Here are some ideas to get you started:
 我是chay，这是我的Github账号。
 我会编程。
 我会的语言：中文、英文。
-我会的编程语言：Python、C++、C语言、Html和Java（会一丢丢）。
+我会的编程语言：Python、C++、C语言、Html、Java、Android（会一丢丢）。
 我的学而思编程社区主页：https://code.xueersi.com/space/13438784
 我的小码王编程社区主页：https://world.xiaomawang.com/w/person/project/all/3146479
 我的网易卡搭社区主页：https://kada.163.com/u/4585208.htm
