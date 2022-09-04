@@ -803,3 +803,16 @@ int main(){
     return 0;
 }
 ```
+正在开发的项目：
+C语言及C++篇：
+1、工资管理系统（见仓库）
+仓库网址如下：
+```
+https://github.com/lichenyichay/-
+```
+安卓篇：
+1、PermissionX安卓库（已暂停开发，见仓库）
+仓库网址如下：
+```
+https://github.com/lichenyichay/PermissionX
+```
