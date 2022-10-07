@@ -487,6 +487,10 @@ while True:
         print(b)
         break
 ```
+最新版可至如下网址查看：
+```
+https://github.com/lichenyichay/All-in-one1.4.0
+```
 2、math库运算器3.1（IDLE、学而思编程社区等所有可编写python代码的均有效）
 ```python
 import math
@@ -805,14 +809,71 @@ int main(){
 ```
 正在开发的项目：
 C语言及C++篇：
-1、工资管理系统（见仓库）
+1、工资管理系统（已停止开发，见仓库）
 仓库网址如下：
 ```
-https://github.com/lichenyichay/-
+https://github.com/lichenyichay/Payroll-system-C
 ```
-安卓篇：
-1、PermissionX安卓库（已暂停开发，见仓库）
+声明及结构体定义部分如下：
+```C
+//如下为函数声明
+void gotoxy(int x, int y);//使光标移动到固定坐标
+void printheader();//打印表头信息
+void printdata(ZGGZ pp);//打印记录信息
+void Disp(ZGGZ tp[], int n);//显示tp数组中存储的n条记录
+float numberinput(const char* notice);//输入数字并验证长度
+void stringinput(char* t, int lens, const char* notice);//输入字符串并验证长度
+int Locate(ZGGZ tp[], int n, char findmess[], const char nameornum[]);//定位数组中符合要求的元素，并返回下标值
+int Add(ZGGZ tp[], int n);//增加工资记录，并返回当前数组中的当前记录数
+void Qur(ZGGZ tp[], int n);//查找满足条件的记录，并显示
+int Del(ZGGZ tp[], int n);//查找满足条件的记录，并删除
+void Modify(ZGGZ tp[], int n);//修改工资记录
+int Insert(ZGGZ tp[], int n);//插入工资记录，并返回数组中的当前记录数
+void Tongji(ZGGZ tp[], int n);//统计职工工资的整体分布情况
+void Sort(ZGGZ tp[], int n);//按实发工资字段降序排序
+void Save(ZGGZ tp[], int n);//写入磁盘数据文件
+void menu();//显示主菜单
+void Wrong();//显示错误信息
+void Nofind();//显示未查找到职工信息
+//如下为结构体定义
+typedef struct employee {
+	char num[10];//编号 
+	char name[15];//姓名 
+	float jbgz;//基本工资 
+	float jj;//奖金 
+	float kk;//扣款 
+	float yfgz;//应发工资 
+	float sk;//税款 
+	float sfgz;//实发工资 
+}ZGGZ;//定义职工的数据结构
+```
+2、俄罗斯方块（C语言版）（暂未开发，见仓库）
+仓库网址如下：
+```
+https://github.com/lichenyichay/Tetris-C
+```
+Android及Kotlin篇：
+1、PermissionX安卓库（见仓库）
 仓库网址如下：
 ```
 https://github.com/lichenyichay/PermissionX
+```
+2、电子拍卖系统（Kotlin版）（见仓库）
+仓库网址如下：
+```
+https://github.com/lichenyichay/Electronic-auction-system-Kotlin-
+```
+部分代码如下：
+```PHP
+<?php
+$arr = array(
+    'code' => '200',
+    'msg' => '成功',
+    'data' => array(
+        'id' => '1',
+        'name' => 'Kotlin'
+    )
+);
+$json_string = json_string($arr);
+echo $json_string;
 ```
