@@ -28,11 +28,11 @@ Python集：
 ```python
 # -*- coding:UTF-8 -*-
 # @Author:Chay
-# @TIME:2022/12/24 15:04
+# @TIME:2022/12/26 10:43
 # @FILE:main.py
-# @Software:IDLE 3.10.4
+# @Software:IDLE 3.11.1
 
-import os,xes.word,time,xes.sms,xes.map,xes.AIspeak,xes.weather,xes.ext,random,math,csv,shutil
+import os,math,random,shutil,time,csv
 book = {}   # 书名字典，格式：书名:本数
 jiebook = {} # 借书清单
 
@@ -144,83 +144,357 @@ def startmenu():
     print("1、初始化（删除）")
     print("2、保留")
     return 0
+
+
 '''
-函数名：erfenchazhao
-调用形式：a = erfenchazhao(yuanlst,shengxulst,target)
-:param yuanlst 原序列
-:param shengxulst 升序列表（原序列改编）
-:param target 查找值
-:return 查找结果（索引，用时，次数）
-作用：查找列表中的值
+函数名：menu
+调用形式：menu()
+:param 无
+:return 0
+作用：输出主菜单
 '''
-def erfenchazhao(yuanlst,shengxulst,target):
-    start_time = time.time()
-    start = 0
-    count = 0
-    end = len(shengxulst)-1
-    if target not in shengxulst:
-        end_time = time.time()
-        return "列表中未查找到目标值"+str(target)+"，共用时"+str(end_time-start_time)+"s，查找次数：0，索引：无"
-    while True:
-        count += 1
-        mid = (start+end)//2
-        if target < shengxulst[mid]:
-            end = mid-1
-            continue
-        elif target > shengxulst[mid]:
-            start = mid + 1
-            continue
-        else:
-            end_time = time.time()
-            return "列表中已查找到目标值"+str(target)+"，共用时"+str(end_time-start_time)+"s，查找次数："+ str(count) +"，原列表中索引："+str(yuanlst.index(target))'''
-函数名：math_cal
-调用形式：s = math_cal(mode,float1,float2)
-:param mode 模式 1~19 模式不在此选择范围内会抛出异常
-:param float1 float2 float型参数，根据模式的需求，如参数有空余，则空余参数添0即可，例：mode = 3:math_cal(3,5.2,0);
-例2：mode = 4:math_cal(4,0,0);例3：mode = 1:math_cal(1,5.92,-8)
-:return 结果
+def menu():
+    print("------多功能一体机------")
+    print("序号          功能")
+    print("1             小工具合集")
+    print("2             图形计算器")
+    print("3             多功能计算器")
+    print("4             math库专用计算器")
+    print("5             小学学生信息管理系统")
+    print("6             图书管理系统")
+    print("7             退出")
+    return 0
+
 '''
-def math_cal(mode,float1,float2):
-    if mode == 1:
-        return math.copysign(float1,float2)
-    elif mode == 2:
-        return math.cos(float1)
-    elif mode == 3:
-        return math.degrees(float1)
-    elif mode == 4:
-        return math.e
-    elif mode == 5:
-        return math.pi
-    elif mode == 6:
-        return math.tan(float1)
-    elif mode == 7:
-        return math.sqrt(float1)
-    elif mode == 8:
-        return math.sin(float1)
-    elif mode == 9:
-        return math.radians(float1)
-    elif mode == 10:
-        return math.pow(float1,float2)
-    elif mode == 11:
-        return math.modf(float1)
-    elif mode == 12:
-        return math.log(float1,float2)
-    elif mode == 13:
-        return math.ldexp(float1,float2)
-    elif mode == 14:
-        return not math.isnan(float1)
-    elif mode == 15:
-        return not math.isinf(float1)
-    elif mode == 16:
-        return math.factorial(int(float1))
-    elif mode == 17:
-        return math.fabs(float1)
-    elif mode == 18:
-        return math.exp1(float1)
-    elif mode == 19:
-        return math.exp(float1)
+函数名：xiaogongjumenu
+调用形式：xiaogongjumenu()
+:param 无
+:return 0
+作用：输出小工具合集菜单
+'''
+def xiaogongjumenu():
+    print("------小工具合集------")
+    print("序号          功能")
+    print("1             抽取随机数")
+    print("2             大小写转换")
+    print("3             求最大公因数")
+    print("4             求最小公倍数")
+    print("5             取余")
+    print("6             向下取整")
+    print("7             向上取整")
+    print("8             多个数求和")
+    print("9             多个数求差")
+    print("10            多个数求积")
+    print("11            二分查找")
+    print("12            判断闰年")
+    print("13            判断是否为质数")
+    print("14            返回上一级")
+    return 0
+
+'''
+函数名：calculatormenu
+调用形式：calculatormenu()
+:param 无
+:return 0
+作用：输出多功能计算器菜单
+'''
+def calculatormenu():
+    print("------多功能计算器------")
+    print("序号          功能")
+    print("1             整数、小数计算（加减乘除）")
+    print("2             分数计算（加减乘除）")
+    print("3             比大小")
+    print("4             年龄计算")
+    print("5             开平方")
+    print("6             华氏度摄氏度转换")
+    print("7             混合运算")
+    print("8             货币换算")
+    print("9             次方根")
+    print("10            求解二元一次方程")
+    print("11            返回上一级")
+    return 0
+
+'''
+函数名：int_float_cal_menu
+调用形式：int_float_cal_menu()
+:param 无
+:return 0
+作用：输出多功能计算器—整数、小数计算菜单
+'''
+def int_float_cal_menu():
+    print("------整数、小数计算（加减乘除）------")
+    print("序号             功能")
+    print("1                除法")
+    print("2                返回上一级")
+    return 0
+
+'''
+函数名：fractions_menu
+调用形式：fractions_menu()
+:param 无
+:return 0
+作用：输出多功能计算器—分数计算菜单
+'''
+def fractions_menu():
+    print("------分数计算（加减乘除）------")
+    print("序号             功能")
+    print("1                加法")
+    print("2                减法")
+    print("3                乘法")
+    print("4                除法")
+    print("5                返回上一级")
+    return 0
+
+'''
+函数名：hybrid_computing_menu
+调用形式：hybrid_computing_menu()
+:param 无
+:return 0
+作用：输出多功能计算器—混合运算菜单
+'''
+def hybrid_computing_menu():
+    print("------混合运算------")
+    print("序号             功能")
+    print("1                +-混合运算")
+    print("2                +*混合运算")
+    print("3                +/混合运算")
+    print("4                -+混合运算")
+    print("5                -*混合运算")
+    print("6                -/混合运算")
+    print("7                *+混合运算")
+    print("8                *-混合运算")
+    print("9                */混合运算")
+    print("10               /+混合运算")
+    print("11               /-混合运算")
+    print("12               /*混合运算")
+    print("13               //混合运算")
+    print("14               返回上一级")
+    return 0
+
+'''
+函数名：currency_conversion_menu
+调用形式：currency_conversion_menu()
+:param 无
+:return 0
+作用：输出多功能计算器—货币转换菜单
+'''
+def currency_conversion_menu():
+    print("------货币转换------")
+    print("序号             功能")
+    print("1                CNY（人民币）->USD（美元）")
+    print("2                CNY（人民币）->JPY（日元）")
+    print("3                USD（美元）->CNY（人民币）")
+    print("4                USD（美元）->JPY（日元）")
+    print("5                JPY（日元）->CNY（人民币）")
+    print("6                JPY（日元）->USD（美元）")
+    print("7                CNY（人民币）->MOP（澳门元）")
+    print("8                MOP（澳门元）->CNY（人民币）")
+    print("9                CNY（人民币）->HKD（港元）")
+    print("10               HKD（港元）->CNY（人民币）")
+    print("11               CNY（人民币）->TWD（台币）")
+    print("12               TWD（台币）->CNY（人民币）")
+    print("13               CNY（人民币）->GBP（英镑）")
+    print("14               GBP（英镑）->CNY（人民币）")
+    print("15               CNY（人民币）->EUR（欧元）")
+    print("16               EUR（欧元）->CNY（人民币）")
+    print("17               返回上一级")
+    return 0
+
+'''
+函数名：mathmenu
+调用形式：mathmenu()
+:param 无
+:return 0
+作用：输出math库计算器菜单
+'''
+def mathmenu():
+    print("------math库计算器------")
+    print("序号             功能")
+    print("1                把y的正负号加到x的前面")
+    print("2                求x的余弦")
+    print("3                弧度x转换成角度")
+    print("4                求数学常量e")
+    print("5                求数学常量pi")
+    print("6                求x的正切值")
+    print("7                求x的平方根")
+    print("8                求x的正弦值")
+    print("9                角度x转换成弧度")
+    print("10               求x的y次方")
+    print("11               输出由x的小数部分和整数部分组成的元组")
+    print("12               求x以a为底的对数")
+    print("13               求x*（2**i）的值")
+    print("14               求x是不是数字")
+    print("15               求x是不是正无穷大或负无穷大")
+    print("16               求x的阶乘")
+    print("17               求x的绝对值")
+    print("18               求math.e的x次方-1")
+    print("19               求math.e的x次方")
+    print("20               返回上一级")
+    return 0
+
+'''
+函数名：student_menu
+调用形式：student_menu()
+:return 0
+作用：输出学生信息管理系统菜单
+'''
+def student_menu():
+    print("------学生信息管理系统------")
+    print("序号             功能")
+    print("1                查询学员信息")
+    print("2                删除学员信息")
+    print("3                新增学员信息")
+    print("4                退出")
+    return 0
+'''
+函数名：book_menu
+调用形式：book_menu()
+:return 0
+作用：输出图书管理系统菜单
+'''
+def book_menu():
+    print("------图书管理系统------")
+    print("序号                  功能")
+    print("1                     用户操作")
+    print("2                     管理员操作")
+    print("3                     退出")
+    return 0
+'''
+函数名：yonghumenu
+调用形式：yonghumenu()
+:return 0
+作用：输出图书管理系统-用户操作菜单
+'''
+def yonghumenu():
+    print("------用户操作------")
+    print("序号                  功能")
+    print("1                     借书")
+    print("2                     还书")
+    print("3                     查询")
+    print("4                     打印借书清单（同时保存至Excel）")
+    print("5                     返回上一级")
+    return 0
+'''
+函数名：guanliyuanmenu
+调用形式：guanliyuanmenu()
+:return 0
+作用：输出图书管理系统-管理员操作菜单
+'''
+def guanliyuanmenu():
+    print("------管理员操作------")
+    print("序号                  功能")
+    print("1                     加库存")
+    print("2                     减库存")
+    print("3                     打印现有图书清单（同时保存至Excel）")
+    print("4                     查询")
+    print("5                     修改管理员密码")
+    print("6                     返回上一级")
+def startmenu():
+    print("------处理原数据------")
+    print("1、初始化（删除）")
+    print("2、继续上次操作")
+    return 0
+'''
+函数名：randomint
+调用形式：a = randomint(maxint,minint,mode)
+:param maxint 随机数最大值
+:param minint 随机数最小值
+:param mode 模式 bin（二进制）/oct（八进制）/int（十进制）/hex（十六进制） 不在选择范围内则抛出异常
+:return 随机数
+作用：取不同进制的随机数
+'''
+def randomint(maxint,minint,mode):
+    b = random.randint(minint,maxint)
+    if mode == "bin":
+        return bin(b)
+    elif mode == "oct":
+        return oct(b)
+    elif mode == "int":
+        return b
+    elif mode == "hex":
+        return hex(b)
     else:
-        raise TypeError("TypeError:类型错误！")
+        raise TypeError("TypeError:模式错误！")
+
+'''
+函数名：daorxiao
+调用形式：daorxiao(mode)
+:param mode 模式 datoxiao（大写转小写）/xiaotoda（小写转大写） 不在选择范围内则抛出异常
+:return 0
+作用：大小写转换
+'''
+def daorxiao(mode):
+    zifugeshu = int(input("请输入字符个数"))
+    if mode == "datoxiao":
+        if zifugeshu > 1:
+            for i in range(zifugeshu):
+                zifu = input("请输入第" + str(i + 1) + "个字符")
+                # zifu1 = ord(zifu)
+                zifu1 = ord(zifu) + 32
+                zifu1 = chr(zifu1)
+                zongzifu = []
+                zongzifu.append(zifu1)
+            print("转换结果：",end = '')
+            for j in zongzifu:
+                print(j)
+        else:
+            zifu = input("请输入字符：")
+            zifu1 = ord(zifu)
+            zifu1 = zifu1 + 32
+            zifu1 = chr(zifu1)
+            print("转换结果：" + zifu1)
+        return 0
+    elif mode == "xiaotoda":
+        if zifugeshu > 1:
+            for i in range(zifugeshu):
+                zifu = input("请输入第" + str(i + 1) + "个字符")
+                # zifu1 = ord(zifu)
+                zifu1 = ord(zifu) - 32
+                zifu1 = chr(zifu1)
+                zongzifu = []
+                zongzifu.append(zifu1)
+            print("转换结果：",end = '')
+            for j in zongzifu:
+                print(j)
+        else:
+            zifu = input("请输入字符：")
+            zifu1 = ord(zifu)
+            zifu1 = zifu1 - 32
+            zifu1 = chr(zifu1)
+            print("转换结果：" + zifu1)
+        return 0
+    else:
+        raise Exception("Error:模式错误!")
+
+'''
+函数名：twonumbers_TheBiggestCommonfactor
+调用形式：a = twonumbers_TheBiggestCommonfactor(num1,num2)
+:param num1 第一个数
+:param num2 第二个数
+:return num1和num2的最大公因数
+作用：求最大公因数
+'''
+def twonumbers_TheBiggestCommonfactor(num1,num2):
+    lst = []
+    for i in range(1,max(num1,num2)+1):
+        if num1 % i == 0 and num2 % i == 0:
+            lst.append(i)
+    return max(lst)
+
+'''
+函数名：twonumbers_TheMinimumCommonmultiple
+调用形式：a = twonumbers_TheMinimumCommonmultiple(num1,num2)
+:param num1 第一个数
+:param num2 第二个数
+:return num1和num2的最小公倍数
+作用：求最小公倍数
+'''
+def twonumbers_TheMinimumCommonmultiple(num1,num2):
+    lst = []
+    for i in range(1,max(num1,num2)+1):
+        if num1 % i == 0 and num2 % i == 0:
+            lst.append(i)
+    return num1 * num2 // max(lst)
 
 '''
 函数名：FtemporCtemp
@@ -280,21 +554,8 @@ def duihuan(mode,money):
         return 8.2470 * money
     else:
         raise TypeError("TypeError:模式错误！")
+
 '''
-函数名：yiyuanerci
-调用形式：yiyuanerci(float1,float2,float3)
-:param float1 系数1
-:param float2 系数2
-:param float3 系数3
-:return x1 实数根1
-:return x2 实数根2
-作用：求解一元二次方程
-'''
-def yiyuanerci(float1,float2,float3):
-    dlt = float2 ** 2 - 4 * float1 * float3
-    x1 = (-float2 + math.sqrt(dlt)) / 2 / float1
-    x2 = (-float2 - math.sqrt(dlt)) / 2 / float1
-    return f"x1 = {x1},x2 = {x2}"'''
 函数名：tuxing
 调用形式：tuxing(huida)
 :param huida 图形
@@ -475,422 +736,142 @@ def tuxing(huida):
             time.sleep(2)
             break
     return 0
+
 '''
-函数名：randomint
-调用形式：a = randomint(maxint,minint,mode)
-:param maxint 随机数最大值
-:param minint 随机数最小值
-:param mode 模式 bin（二进制）/oct（八进制）/int（十进制）/hex（十六进制） 不在选择范围内则抛出异常
-:return 随机数
-作用：取不同进制的随机数
+函数名：math_cal
+调用形式：s = math_cal(mode,float1,float2)
+:param mode 模式 1~19 模式不在此选择范围内会抛出异常
+:param float1 float2 float型参数，根据模式的需求，如参数有空余，则空余参数添0即可，例：mode = 3:math_cal(3,5.2,0);
+例2：mode = 4:math_cal(4,0,0);例3：mode = 1:math_cal(1,5.92,-8)
+:return 结果
 '''
-def randomint(maxint,minint,mode):
-    b = random.randint(minint,maxint)
-    if mode == "bin":
-        return bin(b)
-    elif mode == "oct":
-        return oct(b)
-    elif mode == "int":
-        return b
-    elif mode == "hex":
-        return hex(b)
+def math_cal(mode,float1,float2):
+    if mode == 1:
+        return math.copysign(float1,float2)
+    elif mode == 2:
+        return math.cos(float1)
+    elif mode == 3:
+        return math.degrees(float1)
+    elif mode == 4:
+        return math.e
+    elif mode == 5:
+        return math.pi
+    elif mode == 6:
+        return math.tan(float1)
+    elif mode == 7:
+        return math.sqrt(float1)
+    elif mode == 8:
+        return math.sin(float1)
+    elif mode == 9:
+        return math.radians(float1)
+    elif mode == 10:
+        return math.pow(float1,float2)
+    elif mode == 11:
+        return math.modf(float1)
+    elif mode == 12:
+        return math.log(float1,float2)
+    elif mode == 13:
+        return math.ldexp(float1,float2)
+    elif mode == 14:
+        return not math.isnan(float1)
+    elif mode == 15:
+        return not math.isinf(float1)
+    elif mode == 16:
+        return math.factorial(int(float1))
+    elif mode == 17:
+        return math.fabs(float1)
+    elif mode == 18:
+        return math.exp1(float1)
+    elif mode == 19:
+        return math.exp(float1)
     else:
-        raise TypeError("TypeError:模式错误！")
+        raise TypeError("TypeError:类型错误！")
 
 '''
-函数名：daorxiao
-调用形式：daorxiao(mode)
-:param mode 模式 datoxiao（大写转小写）/xiaotoda（小写转大写） 不在选择范围内则抛出异常
-:return 0
-作用：大小写转换
+函数名：erfenchazhao
+调用形式：a = erfenchazhao(yuanlst,shengxulst,target)
+:param yuanlst 原序列
+:param shengxulst 升序列表（原序列改编）
+:param target 查找值
+:return 查找结果（索引，用时，次数）
+作用：查找列表中的值
 '''
-def daorxiao(mode):
-    zifugeshu = int(input("请输入字符个数"))
-    if mode == "datoxiao":
-        if zifugeshu > 1:
-            for i in range(zifugeshu):
-                zifu = input("请输入第" + str(i + 1) + "个字符")
-                # zifu1 = ord(zifu)
-                zifu1 = ord(zifu) + 32
-                zifu1 = chr(zifu1)
-                zongzifu = []
-                zongzifu.append(zifu1)
-            print("转换结果：",end = '')
-            for j in zongzifu:
-                print(j)
+def erfenchazhao(yuanlst,shengxulst,target):
+    start_time = time.time()
+    start = 0
+    count = 0
+    end = len(shengxulst)-1
+    if target not in shengxulst:
+        end_time = time.time()
+        return "列表中未查找到目标值"+str(target)+"，共用时"+str(end_time-start_time)+"s，查找次数：0，索引：无"
+    while True:
+        count += 1
+        mid = (start+end)//2
+        if target < shengxulst[mid]:
+            end = mid-1
+            continue
+        elif target > shengxulst[mid]:
+            start = mid + 1
+            continue
         else:
-            zifu = input("请输入字符：")
-            zifu1 = ord(zifu)
-            zifu1 = zifu1 + 32
-            zifu1 = chr(zifu1)
-            print("转换结果：" + zifu1)
-        return 0
-    elif mode == "xiaotoda":
-        if zifugeshu > 1:
-            for i in range(zifugeshu):
-                zifu = input("请输入第" + str(i + 1) + "个字符")
-                # zifu1 = ord(zifu)
-                zifu1 = ord(zifu) - 32
-                zifu1 = chr(zifu1)
-                zongzifu = []
-                zongzifu.append(zifu1)
-            print("转换结果：",end = '')
-            for j in zongzifu:
-                print(j)
-        else:
-            zifu = input("请输入字符：")
-            zifu1 = ord(zifu)
-            zifu1 = zifu1 - 32
-            zifu1 = chr(zifu1)
-            print("转换结果：" + zifu1)
-        return 0
-    else:
-        raise Exception("Error:模式错误!")
+            end_time = time.time()
+            return "列表中已查找到目标值"+str(target)+"，共用时"+str(end_time-start_time)+"s，查找次数："+ str(count) +"，原列表中索引："+str(yuanlst.index(target))
 
-'''
-函数名：twonumbers_TheBiggestCommonfactor
-调用形式：a = twonumbers_TheBiggestCommonfactor(num1,num2)
-:param num1 第一个数
-:param num2 第二个数
-:return num1和num2的最大公因数
-作用：求最大公因数
-'''
-def twonumbers_TheBiggestCommonfactor(num1,num2):
-    lst = []
-    for i in range(1,max(num1,num2)+1):
-        if num1 % i == 0 and num2 % i == 0:
-            lst.append(i)
-    return max(lst)
 
-'''
-函数名：twonumbers_TheMinimumCommonmultiple
-调用形式：a = twonumbers_TheMinimumCommonmultiple(num1,num2)
-:param num1 第一个数
-:param num2 第二个数
-:return num1和num2的最小公倍数
-作用：求最小公倍数
-'''
-def twonumbers_TheMinimumCommonmultiple(num1,num2):
-    lst = []
-    for i in range(1,max(num1,num2)+1):
-        if num1 % i == 0 and num2 % i == 0:
-            lst.append(i)
-    return num1 * num2 // max(lst)
-
-'''
-函数名：menu
-调用形式：menu()
-:param 无
-:return 0
-作用：输出主菜单
-'''
-def menu():
-    print("------多功能一体机------")
-    print("序号          功能")
-    print("1             小工具合集")
-    print("2             图形计算器")
-    print("3             多功能计算器")
-    print("4             math库专用计算器")
-    print("5             小学学生信息管理系统")
-    print("6             图书管理系统")
-    print("7             退出")
-    return 0
-
-'''
-函数名：xiaogongjumenu
-调用形式：xiaogongjumenu()
-:param 无
-:return 0
-作用：输出小工具合集菜单
-'''
-def xiaogongjumenu():
-    print("------小工具合集------")
-    print("序号          功能")
-    print("1             抽取随机数")
-    print("2             大小写转换")
-    print("3             求最大公因数")
-    print("4             求最小公倍数")
-    print("5             取余")
-    print("6             向下取整")
-    print("7             向上取整")
-    print("8             多个数求和")
-    print("9             多个数求差")
-    print("10            多个数求积")
-    print("11            二分查找")
-    print("12            学而思专区")
-    print("13            判断闰年")
-    print("14            判断是否为质数")
-    print("15            返回上一级")
-    return 0
-
-'''
-函数名：xes_menu
-调用形式：xes_menu()
-:param 无
-:return 0
-作用：输出学而思专区菜单
-'''
-def xes_menu():
-    print("------学而思专区------")
-    print("序号          功能")
-    print("1             判断成语")
-    print("2             翻译")
-    print("3             调整说话速度")
-    print("4             调整说话音色")
-    print("5             发短信")
-    print("6             查天气")
-    print("7             查风速")
-    print("8             查路线")
-    print("9             查站点")
-    print("10            随机获取生僻词")
-    print("11            随机获取生僻字")
-    print("12            获取拼音")
-    print("13            返回上一级")
-    return 0
-'''
-函数名：calculatormenu
-调用形式：calculatormenu()
-:param 无
-:return 0
-作用：输出多功能计算器菜单
-'''
-def calculatormenu():
-    print("------多功能计算器------")
-    print("序号          功能")
-    print("1             整数、小数计算（加减乘除）")
-    print("2             分数计算（加减乘除）")
-    print("3             比大小")
-    print("4             年龄计算")
-    print("5             开平方")
-    print("6             华氏度摄氏度转换")
-    print("7             混合运算")
-    print("8             货币换算")
-    print("9             次方根")
-    print("10            求解二元一次方程")
-    print("11            返回上一级")
-    return 0
-
-'''
-函数名：int_float_cal_menu
-调用形式：int_float_cal_menu()
-:param 无
-:return 0
-作用：输出多功能计算器—整数、小数计算菜单
-'''
-def int_float_cal_menu():
-    print("------整数、小数计算（加减乘除）------")
-    print("序号             功能")
-    print("1                加法")
-    print("2                减法")
-    print("3                乘法")
-    print("4                除法")
-    print("5                返回上一级")
-    return 0
-
-'''
-函数名：fractions_menu
-调用形式：fractions_menu()
-:param 无
-:return 0
-作用：输出多功能计算器—分数计算菜单
-'''
-def fractions_menu():
-    print("------分数计算（加减乘除）------")
-    print("序号             功能")
-    print("1                加法")
-    print("2                减法")
-    print("3                乘法")
-    print("4                除法")
-    print("5                返回上一级")
-    return 0
-
-'''
-函数名：hybrid_computing_menu
-调用形式：hybrid_computing_menu()
-:param 无
-:return 0
-作用：输出多功能计算器—混合运算菜单
-'''
-def hybrid_computing_menu():
-    print("------混合运算------")
-    print("序号             功能")
-    print("1                +-混合运算")
-    print("2                +*混合运算")
-    print("3                +/混合运算")
-    print("4                -+混合运算")
-    print("5                -*混合运算")
-    print("6                -/混合运算")
-    print("7                *+混合运算")
-    print("8                *-混合运算")
-    print("9                */混合运算")
-    print("10               /+混合运算")
-    print("11               /-混合运算")
-    print("12               /*混合运算")
-    print("13               //混合运算")
-    print("14               返回上一级")
-    return 0
-
-'''
-函数名：currency_conversion_menu
-调用形式：currency_conversion_menu()
-:param 无
-:return 0
-作用：输出多功能计算器—货币转换菜单
-'''
-def currency_conversion_menu():
-    print("------货币转换------")
-    print("序号             功能")
-    print("1                CNY（人民币）->USD（美元）")
-    print("2                CNY（人民币）->JPY（日元）")
-    print("3                USD（美元）->CNY（人民币）")
-    print("4                USD（美元）->JPY（日元）")
-    print("5                JPY（日元）->CNY（人民币）")
-    print("6                JPY（日元）->USD（美元）")
-    print("7                CNY（人民币）->MOP（澳门元）")
-    print("8                MOP（澳门元）->CNY（人民币）")
-    print("9                CNY（人民币）->HKD（港元）")
-    print("10               HKD（港元）->CNY（人民币）")
-    print("11               CNY（人民币）->TWD（台币）")
-    print("12               TWD（台币）->CNY（人民币）")
-    print("13               CNY（人民币）->GBP（英镑）")
-    print("14               GBP（英镑）->CNY（人民币）")
-    print("15               CNY（人民币）->EUR（欧元）")
-    print("16               EUR（欧元）->CNY（人民币）")
-    print("17               返回上一级")
-    return 0
-
-'''
-函数名：mathmenu
-调用形式：mathmenu()
-:param 无
-:return 0
-作用：输出math库计算器菜单
-'''
-def mathmenu():
-    print("------math库计算器------")
-    print("序号             功能")
-    print("1                把y的正负号加到x的前面")
-    print("2                求x的余弦")
-    print("3                弧度x转换成角度")
-    print("4                求数学常量e")
-    print("5                求数学常量pi")
-    print("6                求x的正切值")
-    print("7                求x的平方根")
-    print("8                求x的正弦值")
-    print("9                角度x转换成弧度")
-    print("10               求x的y次方")
-    print("11               输出由x的小数部分和整数部分组成的元组")
-    print("12               求x以a为底的对数")
-    print("13               求x*（2**i）的值")
-    print("14               求x是不是数字")
-    print("15               求x是不是正无穷大或负无穷大")
-    print("16               求x的阶乘")
-    print("17               求x的绝对值")
-    print("18               求math.e的x次方-1")
-    print("19               求math.e的x次方")
-    print("20               返回上一级")
-    return 0
-'''
-函数名：student_menu
-调用形式：student_menu()
-:return 0
-作用：输出学生信息管理系统菜单
-'''
-def student_menu():
-    print("------学生信息管理系统------")
-    print("序号             功能")
-    print("1                查询学员信息")
-    print("2                删除学员信息")
-    print("3                新增学员信息")
-    print("4                退出")
-    return 0
-'''
-函数名：book_menu
-调用形式：book_menu()
-:return 0
-作用：输出图书管理系统菜单
-'''
-def book_menu():
-    print("------图书管理系统------")
-    print("序号                  功能")
-    print("1                     用户操作")
-    print("2                     管理员操作")
-    print("3                     退出")
-    return 0
-'''
-函数名：yonghumenu
-调用形式：yonghumenu()
-:return 0
-作用：输出图书管理系统-用户操作菜单
-'''
-def yonghumenu():
-    print("------用户操作------")
-    print("序号                  功能")
-    print("1                     借书")
-    print("2                     还书")
-    print("3                     查询")
-    print("4                     打印借书清单（同时保存至Excel）")
-    print("5                     返回上一级")
-    return 0
-'''
-函数名：guanliyuanmenu
-调用形式：guanliyuanmenu()
-:return 0
-作用：输出图书管理系统-管理员操作菜单
-'''
-def guanliyuanmenu():
-    print("------管理员操作------")
-    print("序号                  功能")
-    print("1                     加库存")
-    print("2                     减库存")
-    print("3                     打印现有图书清单（同时保存至Excel）")
-    print("4                     查询")
-    print("5                     修改管理员密码")
-    print("6                     返回上一级")
-def startmenu():
-    print("------处理原数据------")
-    print("1、初始化（删除）")
-    print("2、保留")
-    return 0
 '''
 函数名：student
 调用形式：student()
 作用：小学学生信息管理系统
 '''
 def student():
-    print("这里是xx小学学生信息管理系统")
-    stu = { "老八"  : "老八,岁数不明,男,厕所深处 爱好:在厕所干饭"}
-    print("你可以查到所有学员的个人信息,但也请不要向外泄露")
-    while True:
-        print("以下是现有学员名单：")
-        for k in stu:
-            print(k)
-        student_menu()
-        ans = input("请输入序号：")
-        if ans == "1":
-            try:
-                a = input("请输入学员姓名：")
-                print(f"{a}的相关信息是：{stu[a]}")
-                time.sleep(1)
-            except:
-                print("无此学生")
-                time.sleep(1)
-        elif ans == "2":
-            a = input("请输入要删除的学员姓名：")
-            del stu[a]
-            print(a,"的相关信息已经删除")
-            time.sleep(1)
-        elif ans == "3":
-            a = input("请输入要添加的学员姓名：")
-            b = input("请输入新增的学员信息：")
-            stu[a] = b
-            print(a,"的相关信息已添加")
-            time.sleep(1)
-        elif ans == "4":
-            break
-        else:
-            print("无此功能")
-            time.sleep(1)
+    try:
+        stu = {}
+        while True:
+            os.system("cls")
+            student_menu()
+            ans = input("请输入序号：")
+            if ans == "1":
+                try:
+                    a = input("请输入学员姓名：")
+                    print(f"{a}的相关信息是：{stu[a]}")
+                    input()
+                except:
+                    print("无此学生")
+                    input()
+            elif ans == "2":
+                a = input("请输入要删除的学员姓名：")
+                del stu[a]
+                print(a,"的相关信息已经删除")
+                input()
+            elif ans == "3":
+                a = input("请输入要添加的学员姓名：")
+                b = input("请输入新增的学员信息：")
+                stu[a] = b
+                print(a,"的相关信息已添加")
+                input()
+            elif ans == "4":
+                break
+            else:
+                print("序号错误！")
+                input()
+    except Exception as e:
+        print(repr(e))
+'''
+函数名：yiyuanerci
+调用形式：yiyuanerci(float1,float2,float3)
+:param float1 系数1
+:param float2 系数2
+:param float3 系数3
+:return x1 实数根1
+:return x2 实数根2
+作用：求解一元二次方程
+'''
+def yiyuanerci(float1,float2,float3):
+    dlt = float2 ** 2 - 4 * float1 * float3
+    x1 = (-float2 + math.sqrt(dlt)) / 2 / float1
+    x2 = (-float2 - math.sqrt(dlt)) / 2 / float1
+    return f"x1 = {x1},x2 = {x2}"
+
 '''
 函数名：main
 :return 无
@@ -915,24 +896,29 @@ def main():
                                 try:
                                     e = input("请输入模式（二进制：bin;八进制：oct,十进制：int，十六进制：hex）：")
                                     print(randomint(d,c,e))
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 2:
                             e = input("请输入服务：（可选项：大写转小写，小写转大写）")
                             while True:
                                 if e == "大写转小写":
                                     try:
                                         daorxiao("datoxiao")
+                                        input()
                                         break
                                     except Exception as e:
                                         print(rept(e))
                                 elif e == "小写转大写":
                                     try:
                                         daorxiao("xiaotoda")
+                                        input()
                                         break
                                     except Exception as e:
                                         print(repr(e))
+                                        input()
                                 else:
                                     pass
                         elif xuhao == 3:
@@ -941,18 +927,22 @@ def main():
                                     f = int(input("请输入第一个数据："))
                                     g = int(input("请输入第二个数据："))
                                     print(twonumbers_TheBiggestCommonfactor(f,g))
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 4:
                             while True:
                                 try:
                                     h = int(input("请输入第一个数据："))
                                     i = int(input("请输入第二个数据："))
                                     print(twonumbers_TheMinimumCommonmultiple(h,i))
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 5:
                             while True:
                                 try:     
@@ -960,25 +950,31 @@ def main():
                                     w2 = int(input("除数："))
                                     w3 = w1 % w2
                                     print(w3)
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 6:
                             while True:
                                 try:
                                     w1 = float(input("请输入要取整的数"))
                                     print(int(w1))
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 7:
                             while True:
                                 try:
                                     w1 = float(input("请输入要取整的数"))
                                     print(int(w1)+1)
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 8:
                             try:
                                 b = []
@@ -989,8 +985,10 @@ def main():
                                 b = tuple(b)
                                 b = math.fsum(b)
                                 print(b)
+                                input()
                             except Exception as e:
                                 print(repr(e))
+                                input()
                         elif xuhao == 9:
                             try:
                                 b = 0
@@ -1003,8 +1001,10 @@ def main():
                                 for i in range(c-1):
                                     b -= e[1+i]
                                 print(b)
+                                input()
                             except Exception as e:
                                 print(repr(e))
+                                input()
                         elif xuhao == 10:
                             try:
                                 b = 0
@@ -1017,8 +1017,10 @@ def main():
                                 for i in range(c-1):
                                     b *= e[1+i]
                                 print(b)
+                                input()
                             except Exception as e:
                                 print(repr(e))
+                                input()
                         elif xuhao == 11:
                             while True:
                                 d = input("请输入是否运行（运行输yes，否则输no）：")
@@ -1034,112 +1036,13 @@ def main():
                                     c = input("请输入查找值：")
                                     diaoyong = erfenchazhao(a,b,c)
                                     print(diaoyong)
-                                    time.sleep(5)
-                                    print("--------------------")
+                                    input()
                                 elif d == "no":
                                     break
                                 else:
                                     print("指令无效！")
+                                    input()
                         elif xuhao == 12:
-                            while True:
-                                os.system("cls")
-                                xes_menu()
-                                try:
-                                    choose = int(input("请输入序号"))
-                                    if choose == 1:
-                                        b = input("请输入判断的成语：")
-                                        c = xes.word.is_idiom(b)
-                                        if c == "y":
-                                            d = "是成语"
-                                            xes.AIspeak.speak(d)
-                                            print(d)
-                                        else:
-                                            d = "不是成语"
-                                            xes.AIspeak.speak(d)
-                                            print(d)
-                                    elif choose == 2:
-                                        b = input("请输入你要翻译的内容：")
-                                        xes.AIspeak.speak(xes.AIspeak.translate(b))
-                                        print(xes.AIspeak.translate(b))
-                                    elif choose == 3:
-                                        b = int(input("请输入0-2之间的数字（1是原速）："))
-                                        xes.AIspeak.setspeed(b)
-                                        print("现在语速为",b)
-                                    elif choose == 4:
-                                        b = input("请输入语色（在boy和girl中选择）：")
-                                        xes.AIspeak.setmode(b)
-                                    elif choose == 5:
-                                        b = input("请输入电话号码：")
-                                        c = input("请输入发短信的内容：")
-                                        xes.sms.send_msg(b,c)
-                                    elif choose == 6:
-                                        b = input("请输入你要查询天气的城市：")
-                                        c = int(input("请输入索引（0:当天，1：明天，-1：昨天）"))
-                                        d = xes.weather.air_temp(b,c)
-                                        if c == 0:
-                                            e = f"今天{b}{d}度"
-                                            xes.AIspeak.speak(str(e))
-                                            print(e)
-                                        elif c == 1:
-                                            e = f"明天{b}{d}度"
-                                            xes.AIspeak.speak(str(e))
-                                            print(e)
-                                        elif c == -1:
-                                            e = f"昨天{b}{d}度"
-                                            xes.AIspeak.speak(str(e))
-                                            print(e)
-                                    elif choose == 7:
-                                        b = input("请输入城市：")
-                                        c = int(input("请输入索引（0:当天，1：明天，-1：昨天）"))
-                                        d = xes.ext.air_speed(b,c)
-                                        if c == 0:
-                                            e = f"今天{b}风速是{d}"
-                                            xes.AIspeak.speak(str(e))
-                                            print(e)
-                                        elif c == 1:
-                                            e = f"明天{b}风速是{d}"
-                                            xes.AIspeak.speak(str(e))
-                                            print(e)
-                                        elif c == -1:
-                                            e = f"昨天{b}风速是{d}"
-                                            xes.AIspeak.speak(str(e))
-                                            print(e)
-                                    elif choose == 8:
-                                        b = input("请输入起点：")
-                                        c = input("请输入终点：")
-                                        d = input("请输入城市：")
-                                        e = xes.map.get_routes(b,c,d)
-                                        print(e)
-                                    elif choose == 9:
-                                        b = input("请输入起点：")
-                                        c = input("请输入终点：")
-                                        d = input("请输入城市：")
-                                        e = input("请输入索引：")
-                                        f = xes.map.get_routes(b,c,d)
-                                        g = xes.map.get_sites(f,e)
-                                        for j in g:
-                                            h = "站点为" + j
-                                        print(h)
-                                    elif choose == 10:
-                                        b = xes.word.shengpici()
-                                        xes.AIspeak.speak(b)
-                                        print(b)
-                                    elif choose == 11:
-                                        b = xes.word.shengpizi()
-                                        xes.AIspeak.speak(b)
-                                        print(b)
-                                    elif choose == 12:
-                                        b = input("请输入1个汉字")
-                                        c = xes.word.pinyin(b)
-                                        xes.AIspeak.speak(c)
-                                        print(c)
-                                    elif choose == 13:
-                                        break
-                                    else:
-                                        print("序号无效！")
-                                except Exception as e:
-                                    print(repr(e))
-                        elif xuhao == 13:
                             while True:
                                 try:
                                     year = int(input("输入一个年份: "))
@@ -1147,16 +1050,21 @@ def main():
                                        if (year % 100) == 0:
                                            if (year % 400) == 0:
                                                print("{0} 是闰年".format(year))   # 整百年能被400整除的是闰年
+                                               input()
                                            else:
                                                print("{0} 不是闰年".format(year))
+                                               input()
                                        else:
                                            print("{0} 是闰年".format(year))       # 非整百年能被4整除的为闰年
+                                           input()
                                     else:
                                        print("{0} 不是闰年".format(year))
+                                       input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
-                        elif xuhao == 14:
+                                    input()
+                        elif xuhao == 13:
                             while True:
                                 try:
                                     # 用户输入数字
@@ -1170,22 +1078,27 @@ def main():
                                                break
                                        else:
                                            print(num,"是质数")
+                                           input()
                                            
                                     # 如果输入的数字小于或等于 1，不是质数
                                     else:
                                        print(num,"不是质数")
+                                       input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
-                        elif xuhao == 15:
+                                    input()
+                        elif xuhao == 14:
                             break
                         else:
                             print("序号错误！")
+                            input()
                     except Exception as e:
                         print(repr(e))
             elif a == 2:
                 huida = input("请输入计算对象：")
                 tuxing(huida)
+                input()
             elif a == 3:
                 while True:
                     os.system("cls")
@@ -1198,32 +1111,20 @@ def main():
                                 int_float_cal_menu()
                                 try:
                                     xuhao1 = int(input("请输入序号"))
-                                    if xuhao1 == 1:
-                                        eee = float(input("第一个加数："))
-                                        aaa = float(input("第二个加数："))
-                                        qqq = eee + aaa
-                                        print("等于",qqq)
-                                    elif xuhao1 == 2:
-                                        www = float(input("被减数："))
-                                        rrr = float(input("减数："))
-                                        sss = www - rrr
-                                        print("等于",sss)
-                                    elif xuhao1 == 3:
-                                        eee = float(input("第一个乘数："))
-                                        aaa = float(input("第二个乘数："))
-                                        qqq = eee * aaa
-                                        print("等于",qqq)
-                                    elif xuhao1 == 4:
+                                    if xuhao1 == 4:
                                         eee = float(input("被除数："))
                                         aaa = float(input("除数："))
                                         qqq = eee / aaa
                                         print("等于",qqq)
+                                        input()
                                     elif xuhao1 == 5:
                                         break
                                     else:
                                         print("序号错误！")
+                                        input()
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 2:
                             while True:
                                 os.system("cls")
@@ -1239,9 +1140,11 @@ def main():
                                                 df = int(input("分子2："))
                                                 sva = (sd/qw)+(df/ad)
                                                 print("等于",sva)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 2:
                                         while True:
                                             try:
@@ -1251,9 +1154,11 @@ def main():
                                                 df = int(input("分子2："))
                                                 sva = (sd/qw)-(df/ad)
                                                 print("等于",sva)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 3:
                                         while True:
                                             try:
@@ -1263,9 +1168,11 @@ def main():
                                                 df = int(input("分子2："))
                                                 sva = (sd/qw)*(df/ad)
                                                 print("等于",sva)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 4:
                                         while True:
                                             try:
@@ -1275,15 +1182,19 @@ def main():
                                                 df = int(input("分子2："))
                                                 sva = (sd/qw)/(df/ad)
                                                 print("等于",sva)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 5:
                                         break
                                     else:
                                         print("序号错误！")
+                                        input()
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 3:
                             while True:
                                 try:
@@ -1291,13 +1202,17 @@ def main():
                                     a2 = float(input("第二个数："))
                                     if a1 > a2:
                                         print(a1,">",a2)
+                                        input()
                                     if a1 < a2:
                                         print(a1,"<",a2)
+                                        input()
                                     if a1 == a2:
                                         print(a1,"=",a2)
+                                        input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 4:
                             while True:
                                 try:
@@ -1305,18 +1220,22 @@ def main():
                                     q2 = int(input("现在的年份："))
                                     q3 = q2 -q1
                                     print("你现在是",q3,"岁")
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 5:
                             while True:
                                 try:
                                     ws1 = int(input("要开平方的数："))
                                     we2 = ws1**0.5
                                     print("平方是：",we2)
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                             
                         elif xuhao == 6:
                             while True:
@@ -1327,24 +1246,30 @@ def main():
                                             try:
                                                 Ftemp = float(input("请输入华氏度温度："))
                                                 print(FtemporCtemp("℉to℃",Ftemp))
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                         break
                                     elif choose == 2:
                                         while True:
                                             try:
                                                 Ctemp = float(input("请输入摄氏度温度："))
                                                 print(FtemporCtemp("℃to℉",Ctemp))
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                         break
                                     else:
                                         print("序号无效！")
+                                        input()
                                     
                                 except Exception as e:
-                                    print(repr(e)) 
+                                    print(repr(e))
+                                    input()
                         elif xuhao == 7:
                             while True:
                                 os.system("cls")
@@ -1359,9 +1284,11 @@ def main():
                                                 qz = float(input("减数："))
                                                 qwe = az + qa - qz
                                                 print("等于：",qwe)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 2:
                                         while True:
                                             try:
@@ -1370,9 +1297,11 @@ def main():
                                                 zxcvb = float(input("乘数："))
                                                 qaws = (qwert + asdfg) * zxcvb
                                                 print("等于",qaws)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 3:
                                         while True:
                                             try:
@@ -1381,9 +1310,11 @@ def main():
                                                 qw3 = float(input("除数："))
                                                 qw4 = (qw1 + qw2) / qw3
                                                 print("等于：",qw4)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 4:
                                         while True:
                                             try:
@@ -1392,9 +1323,11 @@ def main():
                                                 wa_3 = float(input("加数："))
                                                 wa_4 = wa_1 - wa_2 + wa_3
                                                 print("等于：",wa_4)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 5:
                                         while True:
                                             try:
@@ -1403,9 +1336,11 @@ def main():
                                                 ac = float(input("乘数："))
                                                 av = (az - ax) *ac
                                                 print("等于：",av)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 6:
                                         while True:
                                             try:
@@ -1414,9 +1349,11 @@ def main():
                                                 sc = float(input("除数："))
                                                 sv = (sz - sx) / sc
                                                 print("等于：",sv)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 7:
                                         while True:
                                             try:
@@ -1425,9 +1362,11 @@ def main():
                                                 all = float(input("加数："))
                                                 one = milk * start + all
                                                 print("等于：",one)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 8:
                                         while True:
                                             try:
@@ -1436,9 +1375,11 @@ def main():
                                                 too = float(input("减数："))
                                                 fors = two * to - too
                                                 print("等于：",fors)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 9:
                                         while True:
                                             try:
@@ -1447,9 +1388,11 @@ def main():
                                                 he = float(input("除数："))
                                                 she = you * I / he
                                                 print("等于：",she)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 10:
                                         while True:
                                             try:
@@ -1458,9 +1401,11 @@ def main():
                                                 _3 = float(input("加数："))
                                                 _4 = _1 / _2 + _3
                                                 print("等于：",_4)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 11:
                                         while True:
                                             try:
@@ -1469,9 +1414,11 @@ def main():
                                                 sk3 = float(input("减数："))
                                                 sk4 = sk1 / sk2 - sk3
                                                 print("等于：",sk4)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 12:
                                         while True:
                                             try:
@@ -1480,9 +1427,11 @@ def main():
                                                 mm = float(input("乘数："))
                                                 mu = fish / water * mm
                                                 print("等于：",mu)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 13:
                                         while True:
                                             try:
@@ -1491,15 +1440,19 @@ def main():
                                                 sister = float(input("第二个除数："))
                                                 brother = mum / dad / sister
                                                 print("等于：",brother)
+                                                input()
                                                 break
                                             except Exception as e:
                                                 print(repr(e))
+                                                input()
                                     elif xuhao1 == 14:
                                         break
                                     else:
                                         print("序号错误！")
+                                        input()
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 8:
                             while True:
                                 os.system("cls")
@@ -1509,10 +1462,15 @@ def main():
                                     if choose <= 16 and choose > 0:
                                         int1 = float(input("请输入金额："))
                                         print(duihuan(choose,int1))
+                                        input()
                                     elif choose == 17:
                                         break
+                                    else:
+                                        print("序号错误！")
+                                        input()
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 9:
                             while True:
                                 try:
@@ -1521,25 +1479,32 @@ def main():
                                     z = z/z/z
                                     ghj = sdf ** z
                                     print("等于",ghj)
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 10:
                             while True:
                                 try:
                                     a,b,c = map(int,input("请输入方程的三个系数：").split())
                                     print(yiyuanerci(a,b,c))
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif xuhao == 11:
                             break
                         else:
                             print("序号错误！")
+                            input()
                     except Exception as e:
                         print(repr(e))
+                        input()
             elif a == 4:
                 while True:
+                    os.system("cls")
                     mathmenu()
                     try:
                         choose = int(input("请输入序号："))
@@ -1549,6 +1514,7 @@ def main():
                                     g = float(input("请输入第一个参数："))
                                     h = float(input("请输入第二个参数："))
                                     print(math_cal(choose,g,h))
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
@@ -1557,20 +1523,26 @@ def main():
                                 try:
                                     g = float(input("请输入参数："))
                                     print(math_cal(choose,g,0))
+                                    input()
                                     break
                                 except Exception as e:
                                     print(repr(e))
+                                    input()
                         elif choose in [4,5]:
                             print(math_cal(choose,0,0))
+                            input()
                         elif choose == 20:
                             break
                         else:
                             print("序号错误！")
+                            input()
                         
                     except Exception as e:
                         print(repr(e))
+                        input()
             elif a == 5:
                 student()
+                input()
             elif a == 6:
                 while True:
                     try:
@@ -1644,6 +1616,7 @@ def main():
                                 try:
                                     while True:
                                         os.system("cls")
+                                        
                                         b = input("请输入管理员密码：")
                                         if b == password:
                                             os.system("cls")
@@ -1667,7 +1640,7 @@ def main():
                                                 with open("D:\\图书管理系统\\password.txt","w") as file:
                                                     file.write(password)
                                                 print("修改成功！")
-                                                time.sleep(1)
+                                                input()
                                             elif xuhao1 == "6":
                                                 break
                                             else:
@@ -1683,21 +1656,24 @@ def main():
                                 break
                             else:
                                 print("序号不存在！")
+                                input()
                         break
                     except:
-                        pass
+                        print(repr(e))
                 
             elif a == 7:
                 break
             else:
                 print("序号错误！")
-                time.sleep(5)
+                input()
         except Exception as e:
             print(repr(e))
+            input()
     print("感谢你的使用，再见！")
     input()
 if __name__ == "__main__":
     main()
+
 
 ```
 最新版可至如下网址查看(库文件)：
