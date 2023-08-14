@@ -2041,6 +2041,11 @@ typedef struct employee {
 ```
 https://github.com/lichenyichay/Tetris-C
 ```
+3、俄罗斯方块（Python版）（正在开发，见仓库）
+仓库网址如下：
+```
+https://github.com/lichenyichay/Tetris-Python
+```
 Android及Kotlin篇：
 1、PermissionX安卓库（见仓库）
 仓库网址如下：
