@@ -24,7 +24,7 @@ Here are some ideas to get you started:
 我的GitHub主页：https://github.com/lichenyichay
 以下是我写的部分作品：
 Python集：
-1、多功能一体机2.4.0（仅在学而思社区有效，持续更新）
+1、多功能一体机2.4.0（上载至pypi,持续更新）
 ```python
 # -*- coding:UTF-8 -*-
 # @Author:Chay
@@ -1678,7 +1678,7 @@ if __name__ == "__main__":
 ```
 最新版可至如下网址查看(库文件)：
 ```
-https://github.com/lichenyichay/All-in-one1.4.0
+https://github.com/lichenyichay/All-in-one
 ```
 2、math库运算器3.1（IDLE、学而思编程社区等所有可编写python代码的均有效）
 ```python
